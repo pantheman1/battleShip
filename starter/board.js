@@ -15,18 +15,28 @@ class Board {
     let array = [];
     const totalSquares = this.numRows * this.numCols;
     for (let i = 0; i <= totalSquares; i++) {
-      let arr = [];
+      let arr = [null];
       array.push(arr);
     }
-    console.log(array);
+    function getRandomInt(totalSquare) {
+      return Math.floor(Math.random() * Math.floor(totalSquare));
+    }
+    for (let i = 0; i < this.numShips; i++) {  //numShips needs to be less than total squares
+      let randomPlaceIdx = getRandomInt(totalSquares);
+      if (array[randomPlaceIdx] === null) {
+        array.splice(randomPlaceIdx, 1, ['s'])
+      } else {
+        i--
+      }
+    }
     return array;
   }
 
   //[]
 
-  // [[] [] [] [] []
-  // [] [] [] [] []
-  // [] [] [] [] []             <--- THIS WORKS NOW
+  // [[] [s] [] [s] []
+  // [] [s] [] [] []
+  // [] [] [s] [] []             <--- THIS WORKS NOW
   // [] [] [] [] []]
 
   display() {
