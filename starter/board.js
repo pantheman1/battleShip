@@ -91,21 +91,34 @@ class Board {
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
         let el = this.numCols[j]
-        // if ()
+        if (el === `x`) {
+          counter--
+        }
         // Count total amount of X's; if total X's equals this.numShips
       }
     }
-
+    if (counter === 0) {
+      return true
+    }
+    return `There are ${counter} ships left.`
   }
 
   isValidMove(pos) {
     // TODO: Take in an attack position (in the form of an array [row, col]) and
     // return true if the position is a valid move.
+    for (let i = 0; i < pos.length; i++) {
+      if (Number(pos[i]) === NaN) {
+        return false;
+      }
+    }
+    return true
+    //EDGE CASE we need to figure out how to handle a situation where the user inputs a number range outside of our grid size.//
   }
 
-  isGameOver() {
-    // TODO: Return true if the game is over (when all ships are hit).
-  }
+  // isGameOver() {
+  //   // TODO: Return true if the game is over (when all ships are hit).
+  //   return true
+  // }
 
   attack() {
     // TODO: Take in an attack position in the form of an array, [row, col], as
