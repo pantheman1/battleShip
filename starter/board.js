@@ -1,14 +1,33 @@
 class Board {
-  constructor() {
+  constructor(numRows, numCols, numShips) {
     // TODO: Set up constructor that sets the numRos, numCols, and numShips.
+    this.numRows = numRows;
+    this.numCols = numCols;
+    this.numShips = numShips;
     // TODO: Set this.grid equal to the return value of the instance method
+    this.grid = this.populateGrid();
     // populateGrid().
   }
 
   populateGrid() {
     // TODO: Using the instance variables numRows, numCols, and numShips, return
     // a 2D array representing the state of the board.
+    let array = [];
+    const totalSquares = this.numRows * this.numCols;
+    for (let i = 0; i <= totalSquares; i++) {
+      let arr = [];
+      array.push(arr);
+    }
+    console.log(array);
+    return array;
   }
+
+  //[]
+
+  // [[] [] [] [] []
+  // [] [] [] [] []
+  // [] [] [] [] []             <--- THIS WORKS NOW
+  // [] [] [] [] []]
 
   display() {
     // TODO: Print the game board with marks on any spaces that have been fired
