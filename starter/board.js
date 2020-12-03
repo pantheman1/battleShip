@@ -14,17 +14,22 @@ class Board {
     // a 2D array representing the state of the board.
     let array = [];
     const totalSquares = this.numRows * this.numCols;
-    for (let i = 0; i <= totalSquares; i++) {
+    for (let i = 0; i < totalSquares; i++) {
       let arr = [null];
       array.push(arr);
     }
+
+    // this.numRows = 4 [[null], [null], [null], [null], [null]]
+    // this.numCols = 5
+    //
+
     function getRandomInt(totalSquare) {
       return Math.floor(Math.random() * Math.floor(totalSquare));
     }
     for (let i = 0; i < this.numShips; i++) {  //numShips needs to be less than total squares
       let randomPlaceIdx = getRandomInt(totalSquares);
-      if (array[randomPlaceIdx] === null) {
-        array.splice(randomPlaceIdx, 1, ['s'])
+      if (array[randomPlaceIdx][0] === null) {
+        array.splice(randomPlaceIdx, 1, ['s']) // x will represent an attacked ship
       } else {
         i--
       }
@@ -32,17 +37,16 @@ class Board {
     return array;
   }
 
-  //[]
-
-  // [[] [s] [] [s] []
-  // [] [s] [] [] []
-  // [] [] [s] [] []             <--- THIS WORKS NOW
-  // [] [] [] [] []]
-
   display() {
     // TODO: Print the game board with marks on any spaces that have been fired
     // upon. Be sure not to display the unhit ships to the user! Hint: you might
     // be able to use console.table()
+
+    //null = blank
+    //s = blank
+    //hit = h
+    //miss = x
+    console.table(this.grid)
   }
 
   count() {
@@ -64,5 +68,7 @@ class Board {
     // space or a damaged ship.
   }
 }
+
+let board = new Board(4, 4, 5)
 
 module.exports = Board;
