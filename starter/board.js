@@ -14,25 +14,34 @@ class Board {
     // a 2D array representing the state of the board.
     let array = [];
     const totalSquares = this.numRows * this.numCols;
-    for (let i = 0; i < totalSquares; i++) {
-      let arr = [null];
-      array.push(arr);
+    for (let i = 0; i < this.numRows; i++) {
+      let arr1 = [];
+      for (let j = 0; j < this.numCols; j++) {
+        let arr2 = null;
+        arr1.push(arr2)
+      }
+      array.push(arr1);
     }
 
-    // this.numRows = 4 [[null], [null], [null], [null], [null]]
-    // this.numCols = 5
+    // this.numRows = 4[[null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]]
+    
     //
 
     function getRandomInt(totalSquare) {
       return Math.floor(Math.random() * Math.floor(totalSquare));
     }
-    for (let i = 0; i < this.numShips; i++) {  //numShips needs to be less than total squares
-      let randomPlaceIdx = getRandomInt(totalSquares);
-      if (array[randomPlaceIdx][0] === null) {
-        array.splice(randomPlaceIdx, 1, ['s']) // x will represent an attacked ship
-      } else {
-        i--
-      }
+    let i = 0;
+    while(i < this.numShips) {  //numShips needs to be less than total squares
+      let randomPlaceIdxRow = getRandomInt(this.numRows);
+      let randomPlaceIdxCol = getRandomInt(this.numCols);
+      let target = array[randomPlaceIdxRow][randomPlaceIdxCol];
+      if (target === null) {
+        target = 's' // x will represent an attacked ship
+        i++
+      } 
     }
     return array;
   }
@@ -42,15 +51,18 @@ class Board {
     // upon. Be sure not to display the unhit ships to the user! Hint: you might
     // be able to use console.table()
 
-    //null = blank
-    //s = blank
+    //null = ~
+    //s = ~
     //hit = h
     //miss = x
-    console.table(this.grid)
+    let playerViewArr = [...this.grid] //update every time a user makes a move
+    
+    console.table(playerViewArr)
   }
 
   count() {
     // TODO: Return the number of valid targets (ships) remaining.
+
   }
 
   isValidMove(pos) {
@@ -70,5 +82,6 @@ class Board {
 }
 
 let board = new Board(4, 4, 5)
+board.display()
 
 module.exports = Board;
