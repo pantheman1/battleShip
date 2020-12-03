@@ -27,7 +27,7 @@ class Board {
     // this.numRows = 4 [null, null, null, null, null]
     // this.numRows = 4 [null, null, null, null, null]
     // this.numRows = 4 [null, null, null, null, null]]
-    
+
     //
 
     function getRandomInt(totalSquare) {
@@ -41,7 +41,7 @@ class Board {
       if (target === null) {
         target = 's' // x will represent an attacked ship
         i++
-      } 
+      }
     }
     return array;
   }
@@ -53,15 +53,48 @@ class Board {
 
     //null = ~
     //s = ~
-    //hit = h
-    //miss = x
+    //hit(x) = H
+    //miss = X
+
+    // this.numRows = 4[[null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]
+    // this.numRows = 4 [null, null, null, null, null]]
+
     let playerViewArr = [...this.grid] //update every time a user makes a move
-    
+
+    //Double loop?
+
+    for (let i = 0; i < this.numRows; i++) {
+      for (let j = 0; j < this.numCols; j++) {
+        let el = this.numCols[j]
+        if (el === null) {
+          el = `~`;
+        }
+        else if (el === `s`) {
+          el = `~`;
+        }
+        else if (el === `x`) {
+          el = `H`
+        }
+      }
+    }
+
     console.table(playerViewArr)
   }
 
   count() {
     // TODO: Return the number of valid targets (ships) remaining.
+
+    let counter = this.numShips;
+
+    for (let i = 0; i < this.numRows; i++) {
+      for (let j = 0; j < this.numCols; j++) {
+        let el = this.numCols[j]
+        // if ()
+        // Count total amount of X's; if total X's equals this.numShips
+      }
+    }
 
   }
 
