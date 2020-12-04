@@ -14,7 +14,8 @@ class HumanPlayer {
     // the given answer in the form of an array representing [row, col]
     // we'll need to do string.split on answer
     this.rl.question("What is your move? Enter row,col (example: 3,2) \n", (answer) => {
-      processMove(answer.split(","));
+      const [row, col] = answer.split(",");
+      processMove([Number(row), Number(col)]);
     })
   }
 
